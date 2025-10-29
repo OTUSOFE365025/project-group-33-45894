@@ -1,3 +1,5 @@
+System Constraints
+
 | ID | Constraint | Effect |
 |:---|:---|:---|
 | CON-1 | Average response time ≤ 2 seconds under normal load (RS10) | The interface must provide real-time responses, influencing the design of caching, indexing, and AI inference layers to ensure smooth interaction. |
