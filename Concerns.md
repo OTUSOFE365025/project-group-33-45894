@@ -8,6 +8,5 @@ Architectural Concerns
 | CRN-4 | Scalability and availability for peak usage | High concurrent loads ( start of term, registration deadlines, etc) demand dynamic scaling to maintain performance and 99.5% uptime. |
 | CRN-5 | Response latency and real-time interaction | Conversations must feel instantaneous, the architecture must ensure average response times under 2 seconds (RS10). |
 | CRN-6 | Context management and personalization | The system must store and recall past interactions per user while preventing cross-user data leakage. This introduces design challenges in secure state management. |
-| CRN-7 | Cross-platform accessibility | The assistant must operate consistently across web, mobile, and voice-assistant devices, requiring uniform interface contracts and adaptive UI design. |
-| CRN-8 | Extensibility for future AI services | The architecture should allow new features ( new AI APIs, external data connectors, etc) with minimal refactoring. |
-| CRN-9 | Monitoring and fault tolerance | Continuous monitoring and graceful failure handling are essential for reliability. The system must support automatic retry and recovery for failed API calls. |
+| CRN-7 | Extensibility for future AI services | The architecture should allow new features ( new AI APIs, external data connectors, etc) with minimal refactoring. |
+| CRN-8 | Monitoring and fault tolerance | Continuous monitoring and graceful failure handling are essential for reliability. The system must support automatic retry and recovery for failed API calls. |
