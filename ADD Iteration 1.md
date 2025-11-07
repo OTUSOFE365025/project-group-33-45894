@@ -1,7 +1,7 @@
 <h1>Iteration 1</h1>
 
 <h2>Step 1: Review Inputs</h2>
-<h3>(design objectives, primary functional requirements, quality attribute scenarios, contstraints, concerns)\n</h3>
+<h3>(design objectives, primary functional requirements, quality attribute scenarios, contstraints, concerns)'\n'</h3>
 
 <h2>Step 2: Establish Iteration Goal\n</h2>
 <h3>(select drivers)</h3>
