@@ -4,7 +4,7 @@
 <h3>(design objectives, primary functional requirements, quality attribute scenarios, contstraints, concerns)</h3><br>
 
 <h2>Step 2: Establish Iteration Goal</h2>
-<h3>(select drivers)</h3>
+<h3>(select drivers)</h3><br>
 
 <h2>Step 3: Decompose</h2>
 <h3>(choose element(s) of the system to decompose)</h3><br>
