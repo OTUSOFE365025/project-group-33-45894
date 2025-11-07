@@ -16,16 +16,16 @@
 
 <h2>Step 5: Elements, Responsibilities and Interfaces</h2>
 <h3>(instantiate architectural elemtents, allocate responsiblities and define interfaces)</h3>
-*NOTE include major components of the architecture
-**NOTE include domain specific components
+*NOTE include major components of the architecture <br>
+**NOTE include domain specific components <br>
 ***NOTE include interface specification (both internal and external)
 <br>
 
 
 <h2>Step 6: Sketch and Record</h2>
 <h3>(sketch views and record design decisions)</h3>
-*NOTE include deployment diagram
-**NOTE include domain specific models
+*NOTE include deployment diagram<br>
+**NOTE include domain specific models<br>
 <br>
 
 <h2>Step 7: Analysis and Review</h2>
