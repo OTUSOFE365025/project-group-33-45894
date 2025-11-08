@@ -1,4 +1,6 @@
 <h1>Iteration 2</h1>
+<h3>(meeting the primary functionalities)</h3><br>
+
 
 <h2>Step 1: Review Inputs</h2>
 <h3>(design objectives, primary functional requirements, quality attribute scenarios, contstraints, concerns)</h3><br>
