@@ -81,28 +81,35 @@ The AIDAP system will integrate with external University Systems (LMS, Registrat
 
 <h2>Step 7: Analysis and Review</h2>
 
-| Requirement | Not Addressed | Partially Addressed | Completely Addressed | Design Decisions Made |
-|-------------|----------------|----------------------|------------------------|-------------------------|
-| UC-1 |  | Dashboard Logic module defined, UI layer established. No full functionality yet |  |  |
-| UC-2 | No decisions have been made regarding content publishing. |  |  |  |
-| UC-3 | Notification Service not created. |  |  |  |
-| UC-4 |  | AI Query module and API Gateway defined. No full flow implemented yet. |  |  |
-| UC-5 |  | Authentication defined, and SSO enforced through the gateway. Not fully designed. |  |  |
-| UC-6 |  | External system access module defined. No import/export workflows defined. |  |  |
-| UC-7 | No backup/restore defined. |  |  |  |
-| QA-1 |  | Distributed deployment and monitoring modules defined. No recovery decisions made. |  |  |
-| QA-2 |  | Microservices chosen and modular layers established. No CI/CD decisions. |  |  |
-| QA-3 |  |  | Web App, microservices, and distributed deployment fully support portability. |  |
-| QA-4 |  | API Gateway and AI Service modules defined. Caching not implemented. |  |  |
-| QA-5 |  | Authentication and Security modules defined. Not fully designed. |  |  |
-| CONS-1 |  | AI Service and API Gateway chosen for efficiency. Optimization not completed. |  |  |
-| CONS-2 |  | Distributed deployment supports uptime. No backup implemented. |  |  |
-| CONS-3 |  | Authentication and Gateway planned. SSO details unfinished. |  |  |
-| CONS-4 | No encryption, privacy, or compliance methods defined. |  |  |  |
-| CONS-5 |  | Database access module defined, but no backup system. |  |  |
-| CONS-6 |  |  | Microservices architecture supports AI scaling. Update process not addressed. |  |
-| CRN-1 |  |  | External system access defined. |  |
-| CRN-2 | Security module exists, but privacy, encryption, and policies not addressed. |  |  |  |
+| Not Addressed | Partially Addressed | Completely Addressed | Design Decisions Made During the Iteration |
+|---------------|----------------------|------------------------|--------------------------------------------|
+|               | UC-1                 |                        | Dashboard Logic module defined, UI layer established. No full functionality yet. |
+| UC-2          |                      |                        | No decisions have been made regarding content publishing. |
+| UC-3          |                      |                        | Notification Service not created. |
+|               | UC-4                 |                        | AI Query module and API Gateway defined. No full flow implemented yet. |
+|               | UC-5                 |                        | Authentication defined, and SSO enforced through the gateway. Not fully designed. |
+|               | UC-6                 |                        | External system access module defined. No import/export workflows defined. |
+| UC-7          |                      |                        | No backup/restore defined. |
+|               | QA-1                 |                        | Distributed deployment and monitoring modules defined. No recovery decisions made. |
+|               | QA-2                 |                        | Microservices chosen and modular layers established. No CI/CD decisions. |
+|               |                      | QA-3                   | Web App, microservices, and distributed deployment fully support portability. |
+|               | QA-4                 |                        | API Gateway and AI Service modules defined. Caching not implemented. |
+|               | QA-5                 |                        | Authentication and Security modules defined. Not fully designed. |
+|               | CONS-1               |                        | AI Service and API Gateway chosen for efficiency. Optimization has not been done. |
+|               | CONS-2               |                        | Distributed deployment supports uptime. No backup implemented. |
+|               | CONS-3               |                        | Authentication and Gateway planned. SSO details unfinished. |
+| CONS-4        |                      |                        | No encryption, privacy, or compliance methods defined. |
+|               | CONS-5               |                        | Database access module defined, but no backup system. |
+|               | CONS-6               |                        | Microservices architecture supports AI scaling. Update process not addressed. |
+|               |                      | CRN-1                  | External system access defined. |
+| CRN-2         |                      |                        | Security module exists, but privacy, encryption, and policies not addressed. |
+| CRN-3         |                      |                        | Version management unaddressed. |
+|               | CRN-4                |                        | Distributed deployment and microservices support scalability. No strategy defined. |
+|               | CRN-5                |                        | Gateway and AI Service modules help. No caching or optimization. |
+| CRN-6         |                      |                        | No context storage module. |
+|               |                      | CRN-7                  | Microservices and distributed architecture fully support extensibility. |
+|               | CRN-8                |                        | Monitoring module defined. No recovery logic. |
+
 | CRN-3 | Version management unaddressed. |  |  |  |
 | CRN-4 |  | Distributed deployment and microservices support scalability. No strategy defined. |  |  |
 | CRN-5 |  | Gateway and AI Service modules help. No caching or optimization. |  |  |
