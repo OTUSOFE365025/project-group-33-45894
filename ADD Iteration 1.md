@@ -118,9 +118,3 @@ The final step of this iteration is to summarize our design progress using the f
 | CRN-6         |                      |                        | No context storage module. |
 |               |                      | CRN-7                  | Microservices and distributed architecture fully support extensibility. |
 |               | CRN-8                |                        | Monitoring module defined. No recovery logic. |
-| CRN-3 | Version management unaddressed. |  |  |  |
-| CRN-4 |  | Distributed deployment and microservices support scalability. No strategy defined. |  |  |
-| CRN-5 |  | Gateway and AI Service modules help. No caching or optimization. |  |  |
-| CRN-6 | No context storage module. |  |  |  |
-| CRN-7 |  |  | Microservices and distributed architecture fully support extensibility. |  |
-| CRN-8 |  | Monitoring module defined. No recovery logic. |  |  |
