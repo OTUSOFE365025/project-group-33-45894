@@ -2,11 +2,25 @@
 In this iteration, our goal is to create a general overview of the AIDAP system.<br>
 
 <h2>Step 1: Review Inputs</h2>
-First, we need to review the inputs. The table below summarizes the system and the purpose of this ADD process
+First, we need to review the inputs. The tables below summarize the project and our driver selection process.
 
-| Category       | Details |
-|----------------|---------|
-| Design Purpose | The AI Digital Assistant Platform (AIDAP) is a **greenfield system from a mature domain**. As LMS integration, registration systems, calendar systems, and email systems are well understood. <br><br>The **purpose** of this design is to identify the optimal frameworks, tools, components, and methods for designing AIDAP. |
+| Category | Details |
+|---------|----------|
+| **Design Purpose** | The AI Digital Assistant Platform (AIDAP) is a **greenfield system from a mature domain**. As LMS Integration, registration systems, calendar and email systems are well understood. <br><br> The **purpose** of this design is to make the best architecture decisions for AIDAP. |
+| **Primary Functional Requirements** | **UC-1:** Directly supports our business case, providing rich UI interaction. <br> **UC-4:** Directly supports our business case, providing AI functionality. <br> **UC-5:** Directly influences authentication, SSO flow and access-control. See QA-5. |
+| **Quality Attribute Scenario** | From the table below, we have chosen **QA-1, QA-3, QA-4 & QA-5**. *(See detailed QA scenario table below.)* |
+| **Constraints** | **CONS-1:** Response time is critical. <br> **CONS-2:** Reliability and fault handling are a must. <br> **CONS-3:** Defines how we will design login, session handling and access. <br> **CONS-6:** AI scaling and updating are key. |
+| **Concerns** | **CRN-1:** Directly supports the business case of integration with university systems. <br> **CRN-4:** Influences deployment decisions. <br> **CRN-6:** Critical to UX. |
+
+Quality Attribute Scenario Table
+| Scenario | Importance to Customer | Difficulty to Implement |
+|----------|------------------------|--------------------------|
+| **QA-1** | High | High |
+| **QA-2** | Low | Medium |
+| **QA-3** | High | Medium |
+| **QA-4** | Medium | High |
+| **QA-5** | High | Medium |
+
 
 
 
@@ -32,7 +46,7 @@ The following table summarizes the design concepts selected in this first iterat
 
 | Design Decisions and Location | Rationale |
 |-------------------------------|-----------|
-| Structure the client part of the system using the **Web Application** reference architecture | A web app is our best option, as we need AIDAP to be portable and accessible through any device, with limited offline operation (QA-3). Modern web apps also support rich interfaces, which we will need for personalized dashboards (UC-1). <br><br>We **discarded rich client and mobile applications** because they do not offer portability and cannot reliably support multiple AI models or effectively serve thousands of clients (QA-1, CRN-4, CONS-6). We also** discarded rich internet applications** because they rely on outdated technologies and modern web apps already provide rich interfaces. |
+| Structure the client part of the system using the **Web Application** reference architecture | A web app is our best option, as we need AIDAP to be portable and accessible through any device, with limited offline operation (QA-3). Modern web apps also support rich interfaces, which we will need for personalized dashboards (UC-1). <br><br>We **discarded rich client and mobile applications** because they do not offer portability and cannot reliably support multiple AI models or effectively serve thousands of clients (QA-1, CRN-4, CONS-6). We also **discarded rich internet applications** because they rely on outdated technologies and modern web apps already provide rich interfaces.¹ |
 | Structure the server part of the system using a **Cloud Native Microservices** reference architecture | Cloud-native microservices are the most suitable choice (CRN-4, QA-1). Independent services avoid the limitations of a single large service (QA-2). Each service handles a distinct function: AI integration (UC-4), personalized dashboard (UC-1), authentication (UC-5), context memory (CRN-6), and more. This architecture scales efficiently to 5000+ clients and multiple AIs (QA-1, CONS-6). <br><br>We **rejected N-tier, Monolithic, and Serverless architectures**: N-tier cannot scale individual components like AI independently (CRN-4, QA-4), Monolithic requires redeploying the whole system on updates (QA-2, CONS-6), and Serverless cannot maintain AI models in memory or sustain personalized responses (CRN-5, QA-4). |
 | Physically structure the diagram using the **three-tier deployment** pattern | We selected a distributed three-tier deployment because AIDAP uses cloud-native microservices (CRN-4, QA-1). Each service will run in a separate container so it can scale independently (CONS-6, QA-2). Our tiers include the presentation/web app (UC-1), application/API tier (UC-4), and data tier (UC-6, QA-3). <br><br>We **rejected Non-Distributed Deployment** because it cannot support 5000+ AI users efficiently (QA-1, CRN-4, CONS-1) and all services would compete for resources (CRN-5, QA-4). |
 
@@ -91,30 +105,23 @@ The table below summarizes the relationships between the aforementioned elements
 The final step of this iteration is to summarize our design progress using the following Kanban board.
 
 | Not Addressed | Partially Addressed | Completely Addressed | Design Decisions Made During the Iteration |
-|---------------|----------------------|------------------------|--------------------------------------------|
-|               | UC-1                 |                        | Dashboard Logic module defined, UI layer established. No full functionality yet. |
-| UC-2          |                      |                        | No decisions have been made regarding content publishing. |
-| UC-3          |                      |                        | Notification Service not created. |
-|               | UC-4                 |                        | AI Query module and API Gateway defined. No full flow implemented yet. |
-|               | UC-5                 |                        | Authentication defined, and SSO enforced through the gateway. Not fully designed. |
-|               | UC-6                 |                        | External system access module defined. No import/export workflows defined. |
-| UC-7          |                      |                        | No backup/restore defined. |
-|               | QA-1                 |                        | Distributed deployment and monitoring modules defined. No recovery decisions made. |
-|               | QA-2                 |                        | Microservices chosen and modular layers established. No CI/CD decisions. |
-|               |                      | QA-3                   | Web App, microservices, and distributed deployment fully support portability. |
-|               | QA-4                 |                        | API Gateway and AI Service modules defined. Caching not implemented. |
-|               | QA-5                 |                        | Authentication and Security modules defined. Not fully designed. |
-|               | CONS-1               |                        | AI Service and API Gateway chosen for efficiency. Optimization has not been done. |
-|               | CONS-2               |                        | Distributed deployment supports uptime. No backup implemented. |
-|               | CONS-3               |                        | Authentication and Gateway planned. SSO details unfinished. |
-| CONS-4        |                      |                        | No encryption, privacy, or compliance methods defined. |
-|               | CONS-5               |                        | Database access module defined, but no backup system. |
-|               | CONS-6               |                        | Microservices architecture supports AI scaling. Update process not addressed. |
-|               |                      | CRN-1                  | External system access defined. |
-| CRN-2         |                      |                        | Security module exists, but privacy, encryption, and policies not addressed. |
-| CRN-3         |                      |                        | Version management unaddressed. |
-|               | CRN-4                |                        | Distributed deployment and microservices support scalability. No strategy defined. |
-|               | CRN-5                |                        | Gateway and AI Service modules help. No caching or optimization. |
-| CRN-6         |                      |                        | No context storage module. |
-|               |                      | CRN-7                  | Microservices and distributed architecture fully support extensibility. |
-|               | CRN-8                |                        | Monitoring module defined. No recovery logic. |
+|---------------|----------------------|----------------------|--------------------------------------------|
+|               | UC-1                 |                      | Dashboard Logic module defined, UI layer established. No full dashboard flow yet. |
+|               | UC-4                 |                      | AI Query Service and API Gateway defined. End-to-end query flow not completed. |
+|               | UC-5                 |                      | Authentication Service and SSO through the gateway identified, but not fully designed. |
+|               | QA-1                 |                      | Distributed deployment and monitoring modules planned; recovery and redundancy not specified. |
+|               |                      | QA-3                 | Web App, containerized microservices, and distributed deployment support portability. |
+|               | QA-4                 |                      | API Gateway and AI Service separation supports efficiency; caching and tuning not defined. |
+|               | QA-5                 |                      | Security and Authentication modules identified; detailed policies and mechanisms not defined. |
+|               | CONS-1               |                      | Low-latency requirement considered in separating AI and gateway; concrete performance tactics TBD. |
+|               | CONS-2               |                      | Uptime requirement considered in choosing distributed deployment; specific failover not designed. |
+|               | CONS-3               |                      | SSO requirement drives the dedicated Authentication Service and gateway enforcement; flows incomplete. |
+|               | CONS-6               |                      | AI scalability requirement drives cloud-native microservices; update/versioning process not addressed. |
+|               | CRN-1                |                      | Integration with institutional systems considered; External System Access module defined, but adapters and error handling not designed. |
+|               | CRN-4                |                      | Scalability concern addressed by distributed, microservice-based server architecture; capacity planning not done. |
+| CRN-6         |                      |                      | No context or personalization storage module defined in this iteration. |
+
+
+<h2>Reference</h2>
+¹ Patil, M. (2022, August 24). Why JavaScript is called richer interface?. TutorialsPoint.<br> 
+https://www.tutorialspoint.com/why-javascript-is-called-richer-interface
