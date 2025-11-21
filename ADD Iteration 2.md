@@ -73,49 +73,41 @@ We also refine the API Gateway, since all three use cases rely on it, and define
 
 <h1> Sequence Diagram for UC-1 Edit and View Personalized Dashboards </h1>
 <img width="1477" height="494" alt="Screenshot 2025-11-20 220928" src="https://github.com/user-attachments/assets/e7cf78f3-0782-4380-8541-cb7e0601a3cb" />
-| Method Name | Description |
-|---------|----------|
-| Element: AIDAP Web App (UI) |
-| getDashboardInfo(userID) | Requests the personalized dashboard for the logged-in user. |
-| Element: API Gateway |
-| routeDashboardRequest() | Forwards the dashboard request to the Dashboard Logic Service after validating the token. |
-| Element: Dashboard Logic |
-| loadDashboard(userID) | Returns dashboard and widget configuration for the user. |
+| Element | Method Name | Description |
+|---------|-------------|-------------|
+| AIDAP Web App (UI) | getDashboardInfo(userID) | Requests the personalized dashboard… |
+| API Gateway | routeDashboardRequest() | Forwards request after validation |
+| Dashboard Logic | loadDashboard(userID) | Loads dashboard configuration |
 
 <h1> Sequence Diagram for UC-4 Send Query </h1>
 <img width="1554" height="595" alt="Screenshot 2025-11-20 222548" src="https://github.com/user-attachments/assets/196b9214-4cba-4749-a645-e82dd61f372a" />
-| Method Name | Description |
-|---------|----------|
-| Element: AIDAP Web App (UI) |
-| sendQuery(queryText) | Sends the user’s natural language query to AIDAP. |
-| getQueryResult(queryID) | Requests the processed AI answer. |
-| Element: API Gateway |
-| routeQuerySubmission() | Sends query submissions to the AI Query Service. |
-| Element: AIDAP AI Query Service |
-| createQuery(queryText) | Creates a new QueryRequest. |
-| processQuery(queryID) | Runs AI inference and stores the result. | 
-| getQueryResult(queryID) | Returns the current result or status. |
-| Element: AIDAP Query Database |
-| storeQuery(queryID) | Stores QueryRequest and QueryResult objects. |
-| loadQuery(queryID) | Retrieves query status and result. |
-| Element: External AI Provider |
-| execute(prompt) | Executes AI inference and returns a raw response. |
+| Element | Method Name | Description |
+|---------|-------------|-------------|
+| AIDAP Web App (UI) | sendQuery(queryText) | Sends the user's natural-language query to AIDAP. |
+| AIDAP Web App (UI) | getQueryResult(queryID) | Requests the processed AI answer for the submitted query. |
+| API Gateway | routeQuerySubmission() | Routes the query submission to the AI Query Service. |
+| API Gateway | routeQueryResultRequest() | Forwards result-polling requests to the AI Query Service. |
+| AI Query Service | createQuery(queryText) | Creates a new QueryRequest object and assigns an ID. |
+| AI Query Service | processQuery(queryID) | Runs AI inference and stores the resulting QueryResult. |
+| AI Query Service | getQueryResult(queryID) | Returns the current status or final result of the query. |
+| AIDAP Query Database | storeQuery(queryID) | Stores QueryRequest and QueryResult records. |
+| AIDAP Query Database | loadQuery(queryID) | Retrieves stored query data and result for the given ID. |
+| External AI Provider | execute(prompt) | Performs the AI inference and returns a raw response. |
 
 <h1> Sequence Diagram for UC - 5 </h1>
 <img width="1418" height="616" alt="image" src="https://github.com/user-attachments/assets/8f0b4fdc-7eaf-45f5-ae21-65d9f1658e32" />
-| Method Name | Description |
-|---------|----------|
-| Element: AIDAP Admin UI |
-| changeUserRoles(userID) | Sends a request to update the roles of an AIDAP user. |
-| changeAccessRule(ruleID) | Sends a request to update access rule definitions. |
-| Element: API Gateway |
-| routeAdminRequest() | Forwards admin access requests to the Auth Service. |
-| Element: Auth & Access-Control Service |
-| changeUserRoles(userID) | Updates user roles in the auth store. |
-| changeAccessRule(ruleID) | Updates access rule settings. |
-| Element: AIDAP Auth Database |
-| updateUserRecord(userID) | Stores updated roles. |
-| updateAccessRule(ruleID) | Stores updated access rules. |
+| Element | Method Name | Description |
+|---------|-------------|-------------|
+| AIDAP Admin UI (Web App) | changeUserRoles(userID) | Sends a request to update the roles assigned to a specific AIDAP user. |
+| AIDAP Admin UI (Web App) | changeAccessRule(ruleID) | Sends a request to modify an existing AccessRule. |
+| API Gateway | routeRoleUpdateRequest() | Routes user-role update requests to the Auth & Access-Control Service. |
+| API Gateway | routeAccessRuleUpdateRequest() | Forwards access-rule modification requests to the Auth & Access-Control Service. |
+| Auth & Access-Control Service | changeUserRoles(userID) | Applies updates to the user's role assignments. |
+| Auth & Access-Control Service | changeAccessRule(ruleID) | Applies updates to the specified access rule. |
+| Auth & Access-Control Service | validateAdmin(token) | Ensures the caller has admin privileges before updating roles or rules. |
+| AIDAP Auth Database | updateUserRecord(userID) | Stores revised role information for the user. |
+| AIDAP Auth Database | updateAccessRule(ruleID) | Stores the updated access rule definition. |
+| Admin Notification Component | notifyAdmin() | Notifies the admin that the update was applied successfully. |
 
 
 
