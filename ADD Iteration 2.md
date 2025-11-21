@@ -26,6 +26,11 @@
 
 <h2>Step 6: Sketch and Record</h2>
 <h3>(sketch views and record design decisions)</h3>
+<img width="1068" height="614" alt="Screenshot 2025-11-20 180854" src="https://github.com/user-attachments/assets/63acab08-cb02-459a-941b-1e76e2e345c0" />
+<img width="838" height="651" alt="Screenshot 2025-11-20 174403" src="https://github.com/user-attachments/assets/e91a66fd-e4d0-4c7e-88c0-98a1b95a9b05" />
+
+
+
 *NOTE include deployment diagram<br>
 **NOTE include domain specific models<br>
 <br>
