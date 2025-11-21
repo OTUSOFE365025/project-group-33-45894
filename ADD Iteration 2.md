@@ -115,9 +115,22 @@ We also refine the API Gateway, since all three use cases rely on it, and define
 
 
 
-*NOTE include deployment diagram<br>
-**NOTE include domain specific models<br>
-<br>
-
 <h2>Step 7: Analysis and Review</h2>
-<h3>(perform analysis of current design and review iteration goal + design objectives)</h3><br>
+
+| Not Addressed | Partially Addressed | Completely Addressed | Design Decisions Made During the Iteration |
+|---------|----------|----------|----------|
+|  | UC-1 |  | Refined Dashboard Logic Service and mapping of Dashboard > DashboardService and Widget > WidgetBuilder. Domain model supports dashboard personalization. |
+|  | UC-4 |  | AI Query Service defined with QueryRequest and QueryResult domain objects. Public methods exposed through API Gateway. |
+|  | UC-5 |  | Authentication & Access-Control refined: User, Session, Role mapped to AuthenticationService, TokenManager, AuthorizationHandler. |
+| | QA-1 |  | Reliability supported through centralized API Gateway, monitoring, and service decomposition. |
+|  | QA-4 |  | Efficiency improved by separating AI Query Service and Dashboard Logic Service; REST/JSON ensures lightweight communication. |
+|  |  | QA-3 | Web App + cloud-native microservices architecture supports portability across environments. |
+|  | QA-5 |  | Access rules, token validation, and authorization integrated into Auth Service. |
+|  | CONS-1 | | Latency-sensitive operations centralized through Gateway; routing minimized. |
+| CONS-2 |  |  | Failover/redundancy strategies not yet designed in this iteration. |
+|  | CONS-3 |  | SSO token validation and session handling partially implemented. |
+|  | CONS-6 |  | AI Query scaling supported by microservice separation; model update strategy to be addressed in next iteration. |
+|  | CRN-1 |  | LMS/Registration/Email integration points defined in Dashboard Logic Service. |
+|  | CRN-4 |  | Scalability supported through microservice decomposition; capacity planning deferred. |
+| CRN-6 |  |  | Context memory/personalization store not yet introduced (Iteration 3). |
+
