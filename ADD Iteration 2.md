@@ -73,6 +73,7 @@ We also refine the API Gateway, since all three use cases rely on it, and define
 
 <h1> Sequence Diagram for UC-1 Edit and View Personalized Dashboards </h1>
 <img width="1477" height="494" alt="Screenshot 2025-11-20 220928" src="https://github.com/user-attachments/assets/e7cf78f3-0782-4380-8541-cb7e0601a3cb" />
+
 | Element | Method Name | Description |
 |---------|----------|----------|
 | AIDAP Web App (UI) | getDashboardInfo(userID) | Requests the personalized dashboard… |
@@ -81,6 +82,7 @@ We also refine the API Gateway, since all three use cases rely on it, and define
 
 <h1> Sequence Diagram for UC-4 Send Query </h1>
 <img width="1554" height="595" alt="Screenshot 2025-11-20 222548" src="https://github.com/user-attachments/assets/196b9214-4cba-4749-a645-e82dd61f372a" />
+
 | Element | Method Name | Description |
 |---------|----------|----------|
 | AIDAP Web App (UI) | sendQuery(queryText) | Sends the user's natural-language query to AIDAP. |
@@ -96,6 +98,7 @@ We also refine the API Gateway, since all three use cases rely on it, and define
 
 <h1> Sequence Diagram for UC - 5 </h1>
 <img width="1418" height="616" alt="image" src="https://github.com/user-attachments/assets/8f0b4fdc-7eaf-45f5-ae21-65d9f1658e32" />
+
 | Element | Method Name | Description |
 |---------|----------|----------|
 | AIDAP Admin UI (Web App) | changeUserRoles(userID) | Sends a request to update the roles assigned to a specific AIDAP user. |
