@@ -54,6 +54,26 @@ We also refine the API Gateway, since all three use cases rely on it, and define
 <img width="838" height="651" alt="Screenshot 2025-11-20 174403" src="https://github.com/user-attachments/assets/e91a66fd-e4d0-4c7e-88c0-98a1b95a9b05" />
 <img width="731" height="678" alt="Screenshot 2025-11-20 210747" src="https://github.com/user-attachments/assets/7f66c910-371c-42ab-9368-762f82f273c5" />
 
+| Elements | Responsibility |
+|---------|----------|
+| AIDAP Web App (UI) | Presents dashboards, query interface, and admin screens to the user. Sends user actions (view dashboard, submit query, manage access) to the API Gateway. |
+| Client | Represents the user-side environment that runs the AIDAP Web App UI. Sends all interactions to the server over HTTPS. |
+| API Gateway | Serves as the single entry point for all AIDAP client traffic. Performs initial token checks and routes requests to Dashboard Logic Service, AI Query Service, or Auth & Access-Control Service. Provides centralized cross-cutting concerns. |
+| Dashboard Logic Service | Implements UC-1. Loads and updates personalized dashboards using domain objects (Dashboard, Widget). Retrieves institution-related data through External Systems for dashboard display. |
+| AI Query Service | Implements UC-4. Handles query submission, AI model invocation, and result retrieval. Manages QueryRequest and QueryResult lifecycle. Returns natural-language responses for dashboards or direct viewing. |
+| Auth & Access-Control Service | Implements UC-5. Validates sessions, manages authentication, updates user roles, and enforces AccessRules. Ensures only authorized users can access protected AIDAP features. |
+| AIDAP Data Store | Centralized storage for domain objects used by all services (User, Session, Dashboard, Widget, QueryRequest, QueryResult, AccessRule). Provides persistent data for dashboards, queries, and access control. |
+| Service Agents | Adapters that handle communication between AIDAP and external university systems (LMS, Registration, Email) and AI providers. Translate internal requests into external API calls and manage error handling and protocol details. |
+| Server | Hosts all backend logic and data services for AIDAP. Enforces security, executes business rules, and integrates with institutional systems and the database. |
+| Business Layer | Contains all core application logic that implements the primary use cases. Coordinates dashboard rendering, AI query processing, and authentication/authorization before accessing data or external systems. |
+| Data Layer | Encapsulates data access concerns for AIDAP. Provides a clear boundary between business logic and persistent storage or external data sources (university systems and AI providers). | 
+| Other University Systems | External institutional systems such as LMS, Registration, and Email. Provide academic and administrative data that can be surfaced on dashboards or used as context for AI queries through Service Agents. |
+| Database | Physical database platform that backs the AIDAP Data Store. Provides durable storage, indexing, and transactional guarantees for AIDAP data. |
+
+
+
+
+
 
 
 
