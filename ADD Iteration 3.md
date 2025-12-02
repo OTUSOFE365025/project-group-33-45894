@@ -24,20 +24,24 @@ To guide the evaluation, we first represent the key quality drivers in an ATAM U
 
 <h2>ATAM risk assessment table</h2>
 
-| ID   | Type | Description                                                | Related QA   | Reason / Impact                                          |
-|------|------|------------------------------------------------------------|--------------|----------------------------------------------------------|
-| R1   | Risk | External system failure (SSO or AI provider)               | Reliability  | Breaks uptime requirement and system becomes unavailable |
-| R2   | Risk | Microservice crash not detected or recovered quickly       | Reliability  | Increases downtime which delays recovery                 |
-| R3   | Risk | Monitoring gaps fail to detect degradation quickly         | Reliability  | Problems escalate before detection                       |
-| R4   | Risk | AI inference takes > 2 seconds under load                  | Efficiency   | Violates core performance requirement                    |
-| R5   | Risk | Dashboard takes > 2 seconds to load                        | Efficiency   | Reduces usability and responsiveness                     |
-| R6   | Risk | API Gateway adds excessive latency                         | Efficiency   | Consumes latency budget for all services                 |
-| R7   | Risk | Services fail to scale during peak loads                   | Efficiency   | Causes slowdowns or timeouts                             |
-| R8   | Risk | Unauthorized access to protected data                      | Security     | Data breach, violates confidentiality                    |
-| R9   | Risk | Privilege escalation attack succeeds                       | Security     | Compromises entire system                                |
-| R10  | Risk | Token validation or propagation fails between services     | Security     | Causes inconsistent authentication                       |   
-| R11  | Risk | Data not properly encrypted                                | Security     | Sensitive information could be exposed                   |
-| R12  | Risk | Dashboard or AI results leak to wrong user                 | Security     | Cross-user data exposure                                 |
+| ID   | Type         | Description                                                | Related QA   | Impact                                                           |
+|------|--------------|------------------------------------------------------------|--------------|------------------------------------------------------------------|
+| R1   | Risk         | External dependency failure (SSO or AI provider)           | Reliability  | Breaks uptime requirement means users are unable to access AIDAP | 
+| R2   | Risk         | Microservice crash not detected or recovered quickly       | Reliability  | Increased downtime lead to degraded service continuity           |
+| R3   | Risk         | AI inference latency exceeds 2 seconds under load          | Efficiency   | Reduces usability                                                |
+| R4   | Risk         | Dashboard and widgets take longer than 2 seconds to load   | Efficiency   | Poor user experience means system feels slow                     |
+| R5   | Risk         | Token validation inconsistencies between services          | Security     | Authorization errors can lead to potential unauthorized access   |
+| R6   | Risk         | Data not encrypted properly in transit or at rest          | Security     | Risk of data exposure or leak                                    |
+| NR1  | Non-Risk     | Microservice isolation prevents entire system failure      | Reliability  | Supports availability and fault containment                      |
+| NR2  | Non-Risk     | Cloud auto-scaling handles peak loads effectively          | Efficiency   | Helps maintain performance during spikes                         |
+| NR3  | Non-Risk     | SSO authentication ensures consistent identity validation  | Security     | Maintains stable and secure access control                       |
+| S1   | Sensitivity  | AI model response time                                     | Efficiency   | Small increases directly break the 2-second requirement          |
+| S2   | Sensitivity  | API Gateway overhead                                       | Efficiency   | Added latency affects every request end-to-end                   |
+| S3   | Sensitivity  | Token expiry, signature, and validation rules              | Security     | Misconfigurations create authentication vulnerabilities          |
+| S4   | Sensitivity  | Autoscaling thresholds                                     | Efficiency   | Incorrect thresholds cause overload or high cost                 |
+| T1   | Tradeoff     | Strict encryption and validation measures                  | Security     | Slower processing; hurts efficiency                              |
+| T2   | Tradeoff     | Detailed logging and monitoring                            | Security     | Increased latency and performance overhead                       |
+| T3   | Tradeoff     | More microservices improve modularity                      | Reliability  | More network hops → higher latency                               |
 
 
 
