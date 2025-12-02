@@ -24,20 +24,20 @@ To guide the evaluation, we first represent the key quality drivers in an ATAM U
 
 <h2>ATAM risk assessment table</h2>
 
-| ID   | Type | Description                                         | Related QA   | Reason / Impact                                      |
-|------|------|------------------------------------------------------------|--------------|-------------------------------------------------------------|
-| R1   | Risk | External system failure (SSO or AI provider)        | Reliability  | Breaks uptime requirement and system becomes unavailable |
-| R2   | Risk | Microservice crash not detected or recovered quickly | Reliability  | Increases downtime; delays recovery                   |
-| R3   | Risk | Monitoring gaps fail to detect degradation quickly  | Reliability  | Problems escalate before detection                    |
-| R4   | Risk | AI inference takes > 2 seconds under load            | Efficiency   | Violates core performance requirement                 |
-| R5   | Risk | Dashboard takes > 2 seconds to load                  | Efficiency   | Reduces usability and responsiveness                  |
-| R6   | Risk | API Gateway adds excessive latency                  | Efficiency   | Consumes latency budget for all services              |
-| R7   | Risk | Services fail to scale during peak loads            | Efficiency   | Causes slowdowns or timeouts                          |
-| R8   | Risk | Unauthorized access to protected data               | Security     | Data breach, violates confidentiality                 |
-| R9   | Risk | Privilege escalation attack succeeds                | Security     | Compromises entire system                             |
-| R10  | Risk | Token validation or propagation fails between services | Security     | Causes inconsistent authentication     |
-| R11  | Risk | Data not properly encrypted                         | Security     | Sensitive information could be exposed                |
-| R12  | Risk | Dashboard or AI results leak to wrong user          | Security     | Cross-user data exposure                              |
+| ID   | Type | Description                                                | Related QA   | Reason / Impact                                          |
+|------|------|------------------------------------------------------------|--------------|----------------------------------------------------------|
+| R1   | Risk | External system failure (SSO or AI provider)               | Reliability  | Breaks uptime requirement and system becomes unavailable |
+| R2   | Risk | Microservice crash not detected or recovered quickly       | Reliability  | Increases downtime which delays recovery                 |
+| R3   | Risk | Monitoring gaps fail to detect degradation quickly         | Reliability  | Problems escalate before detection                       |
+| R4   | Risk | AI inference takes > 2 seconds under load                  | Efficiency   | Violates core performance requirement                    |
+| R5   | Risk | Dashboard takes > 2 seconds to load                        | Efficiency   | Reduces usability and responsiveness                     |
+| R6   | Risk | API Gateway adds excessive latency                         | Efficiency   | Consumes latency budget for all services                 |
+| R7   | Risk | Services fail to scale during peak loads                   | Efficiency   | Causes slowdowns or timeouts                             |
+| R8   | Risk | Unauthorized access to protected data                      | Security     | Data breach, violates confidentiality                    |
+| R9   | Risk | Privilege escalation attack succeeds                       | Security     | Compromises entire system                                |
+| R10  | Risk | Token validation or propagation fails between services     | Security     | Causes inconsistent authentication                       |   
+| R11  | Risk | Data not properly encrypted                                | Security     | Sensitive information could be exposed                   |
+| R12  | Risk | Dashboard or AI results leak to wrong user                 | Security     | Cross-user data exposure                                 |
 
 
 
