@@ -44,8 +44,39 @@ To guide the evaluation, we first represent the key quality drivers in an ATAM U
 | T3   | Tradeoff     | More microservices improve modularity                      | Reliability  | More network hops → higher latency                               |
 
 
+<h2>Architecture Analysis</h2>
 
+<h3>Sensitivities</h3>
+<ul>
+  <li><strong>S1: AI model response time (Efficiency):</strong> Small increases in AI inference time can push total response time above the 2-second requirement.</li>
+  <li><strong>S2: API Gateway overhead (Efficiency):</strong> Routing, authentication checks, and logging directly affect end-to-end latency.</li>
+  <li><strong>S3: Token expiry, signature, and validation rules (Security):</strong> Stricter validation improves security but increases the chance of failed or denied logins.</li>
+  <li><strong>S4: Autoscaling thresholds (Efficiency & Reliability):</strong> Scaling triggers (CPU, latency, request rate) determine whether services scale early enough to prevent overload.</li>
+</ul>
 
-<h2>Risks, non-risks, sensitivity, and tradeoffs</h2>
+<h3>Tradeoffs</h3>
+<ul>
+  <li><strong>T1: Security (+) vs. Efficiency (–):</strong> Stronger encryption and stricter token checks increase security but add processing overhead.</li>
+  <li><strong>T2: Security (+) vs. Performance Overhead (–):</strong> Logging, monitoring, and auditing improve security but increase I/O and latency.</li>
+  <li><strong>T3: Reliability & Modularity (+) vs. Latency/Complexity (–):</strong> More granular microservices improve isolation but add network hops and architectural complexity.</li>
+</ul>
+
+<h3>Risks</h3>
+<ul>
+  <li><strong>R1: External dependency failure (Reliability):</strong> If SSO or the AI provider fails, users cannot authenticate or send queries.</li>
+  <li><strong>R2: Microservice crash not detected or recovered quickly (Reliability):</strong> Failed services may remain offline without proper monitoring, increasing downtime.</li>
+  <li><strong>R3: AI inference latency exceeds 2 seconds under load (Efficiency):</strong> Heavy load can slow AI responses and degrade usability.</li>
+  <li><strong>R4: Dashboards and widgets load slowly (Efficiency):</strong> Complex aggregation or slow data sources reduce responsiveness.</li>
+  <li><strong>R5: Token validation inconsistencies (Security):</strong> Different services validating tokens differently can cause unauthorized access or unexpected denials.</li>
+  <li><strong>R6: Improper encryption (Security):</strong> Misconfigured TLS or key management may expose sensitive data.</li>
+</ul>
+
+<h3>Non-Risks</h3>
+<ul>
+  <li><strong>N1: Microservice isolation prevents full system failure (Reliability):</strong> Failure of a single service does not necessarily impact core functionality.</li>
+  <li><strong>N2: Cloud auto-scaling handles peak load effectively (Efficiency & Reliability):</strong> Auto-scaling maintains response times and uptime during spikes.</li>
+  <li><strong>N3: SSO provides consistent identity validation (Security):</strong> Institutional SSO ensures reliable and mature authentication.</li>
+</ul>
+
 
 
