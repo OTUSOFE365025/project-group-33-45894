@@ -48,35 +48,78 @@ To guide the evaluation, we first represent the key quality drivers in an ATAM U
 
 <h3>Sensitivities</h3>
 <ul>
-  <li><strong>S1: AI model response time (Efficiency):</strong> Small increases in AI inference time can push total response time above the 2-second requirement.</li>
-  <li><strong>S2: API Gateway overhead (Efficiency):</strong> Routing, authentication checks, and logging directly affect end-to-end latency.</li>
-  <li><strong>S3: Token expiry, signature, and validation rules (Security):</strong> Stricter validation improves security but increases the chance of failed or denied logins.</li>
-  <li><strong>S4: Autoscaling thresholds (Efficiency & Reliability):</strong> Scaling triggers (CPU, latency, request rate) determine whether services scale early enough to prevent overload.</li>
+  <li><strong>S1:</strong>
+      Small increases in AI inference time can immediately push total response time over the 2-second requirement, directly affecting conversational usability.
+  </li>
+
+  <li><strong>S2:</strong>
+      The amount of processing (routing, auth. checks, logging) performed by the API Gateway directly affects end-to-end latency for every request.
+  </li>
+
+  <li><strong>S3:</strong>
+      How strictly tokens are validated (expiry window, signing algorithms, audience checks) determines both security strength and the likelihood of failed logins or denied requests.
+  </li>
+
+  <li><strong>S4:</strong>
+      The rules used to trigger scaling (CPU, latency, request rate) determine whether services scale early enough to avoid overload or too late, causing timeouts and degraded reliability.
+  </li>
 </ul>
 
 <h3>Tradeoffs</h3>
 <ul>
-  <li><strong>T1: Security (+) vs. Efficiency (–):</strong> Stronger encryption and stricter token checks increase security but add processing overhead.</li>
-  <li><strong>T2: Security (+) vs. Performance Overhead (–):</strong> Logging, monitoring, and auditing improve security but increase I/O and latency.</li>
-  <li><strong>T3: Reliability & Modularity (+) vs. Latency/Complexity (–):</strong> More granular microservices improve isolation but add network hops and architectural complexity.</li>
+  <li><strong>T1: Security (+) vs. Efficiency (–)</strong><br>
+      Stronger encryption, stricter token validation, and additional security checks improve protection of academic data and conversations but increase processing time and latency at the API Gateway and services.
+  </li>
+
+  <li><strong>T2: Security (+) vs. Performance Overhead (–)</strong><br>
+      Detailed logging, monitoring, and audit trails improve incident response and forensics but add I/O and storage overhead, slightly increasing request latency and resource consumption.
+  </li>
+
+  <li><strong>T3: Reliability & Modularity (+) vs. Latency/Complexity (–)</strong><br>
+      Splitting AIDAP into more granular microservices improves fault isolation and independent deployment, but each extra network hop and service boundary adds latency and architectural complexity.
+  </li>
 </ul>
 
 <h3>Risks</h3>
 <ul>
-  <li><strong>R1: External dependency failure (Reliability):</strong> If SSO or the AI provider fails, users cannot authenticate or send queries.</li>
-  <li><strong>R2: Microservice crash not detected or recovered quickly (Reliability):</strong> Failed services may remain offline without proper monitoring, increasing downtime.</li>
-  <li><strong>R3: AI inference latency exceeds 2 seconds under load (Efficiency):</strong> Heavy load can slow AI responses and degrade usability.</li>
-  <li><strong>R4: Dashboards and widgets load slowly (Efficiency):</strong> Complex aggregation or slow data sources reduce responsiveness.</li>
-  <li><strong>R5: Token validation inconsistencies (Security):</strong> Different services validating tokens differently can cause unauthorized access or unexpected denials.</li>
-  <li><strong>R6: Improper encryption (Security):</strong> Misconfigured TLS or key management may expose sensitive data.</li>
+  <li><strong>R1:</strong>
+      If the institution’s SSO service or external AI provider is unavailable, users may be unable to authenticate or send queries, breaking the uptime expectations for AIDAP.
+  </li>
+
+  <li><strong>R2:</strong>
+      If monitoring or restart mechanisms fail, a crashed AI, dashboard, or auth. service can remain down, increasing downtime and violating availability goals.
+  </li>
+
+  <li><strong>R3:</strong>
+      Under peak usage, AI services may respond too slowly, causing end-to-end response times to exceed the target and degrading conversational experience.
+  </li>
+
+  <li><strong>R4:</strong>
+      Complex dashboard aggregation or slow data sources can cause the UI to feel sluggish, reducing usability and student satisfaction.
+  </li>
+
+  <li><strong>R5:</strong>
+      If services validate tokens differently, users may unexpectedly gain or lose access, potentially leading to unauthorized access or confusing failures.
+  </li>
+
+  <li><strong>R6:</strong>
+      Misconfiguration of TLS, key management, or storage encryption can expose sensitive institutional and personal data to interception or leakage.
+  </li>
 </ul>
 
 <h3>Non-Risks</h3>
 <ul>
-  <li><strong>N1: Microservice isolation prevents full system failure (Reliability):</strong> Failure of a single service does not necessarily impact core functionality.</li>
-  <li><strong>N2: Cloud auto-scaling handles peak load effectively (Efficiency & Reliability):</strong> Auto-scaling maintains response times and uptime during spikes.</li>
-  <li><strong>N3: SSO provides consistent identity validation (Security):</strong> Institutional SSO ensures reliable and mature authentication.</li>
-</ul>
+  <li><strong>N1:</strong>
+      Because services are independently deployed, a failure in one (e.g., analytics) does not necessarily bring down core query or dashboard functionality.
+  </li>
 
+  <li><strong>N2:</strong>
+      When configured correctly, the underlying cloud platform can automatically add instances during spikes, helping maintain response time and uptime targets.
+  </li>
+
+  <li><strong>N3:</strong>
+      Relying on the institution’s standard SSO solution ensures mature, well-tested identity management and reduces the chance of bespoke authentication errors.
+  </li>
+</ul>
 
 
